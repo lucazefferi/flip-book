@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Disturbi dell’umore: La depressione</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    body {
+      margin: 0;
+background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);      
+display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .flipbook {
+      width: 100vw;
+      max-width: 800px;
+      height: 95vh;
+      max-height: 600px;
+    }
+
+    .flipbook .page {
+      height: 100%;
+    }
+	
+	.flipbook .page:first-child img {
+		  height: 100%;
+		  object-fit: fill;
+	}
+
+
+    .flipbook .page img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+	 }
+    
+
+    @media (max-width: 768px) {
+      .flipbook {
+        width: 100vw;
+        height: 70vh;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .flipbook {
+        width: 100vw;
+        height: 80vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="flipbook">
+    <!-- Le tue pagine -->
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-01.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-02.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-03.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-04.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-05.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-06.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-07.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-08.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-09.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-10.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-11.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-12.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-13.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-14.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-15.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-16.jpg" /></div>
+    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-17.jpg" /></div>
+  </div>
+  
+  
+	<audio id="pageSound" src="page-flip.mp3" preload="auto"></audio>
+
+	<script src="jquery.js"></script>
+	<script src="turn.js"></script>
+  <script>
+    $(document).ready(function () {
+	const sound = document.getElementById("pageSound");
+
+      $(".flipbook").turn({
+        width: $(".flipbook").width(),
+        height: $(".flipbook").height(),
+        autoCenter: true,
+        when: {
+          turning: function () {
+            // Riproduci suono quando sfoglia
+            sound.currentTime = 0;
+            sound.play();
+          }
+        }
+      });
+
+      // Ricalcola su resize
+      $(window).resize(function () {
+        $(".flipbook").turn("size", $(".flipbook").width(), $(".flipbook").height());
+      });
+	
+		
+		
+    });
+  </script>
+</body>
+
+</html>
