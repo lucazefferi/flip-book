@@ -3,21 +3,20 @@
 
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Disturbi dell’umore: La depressione</title>
-  <link rel="stylesheet" href="style.css" />
-
   <style>
     body {
+	  background-image: url("bg.jpg");
       margin: 0;
-background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%);      
-display: flex;
+	  display: flex;
       justify-content: center;
       align-items: center;
-      padding: 20px;
+      padding: 40px;
       min-height: 100vh;
       box-sizing: border-box;
     }
+	
+
 
     .flipbook {
       width: 100vw;
@@ -30,16 +29,13 @@ display: flex;
       height: 100%;
     }
 	
-	.flipbook .page:first-child img {
-		  height: 100%;
-		  object-fit: fill;
-	}
-
-
+		
+		
+		
     .flipbook .page img {
       width: 100%;
+	  border-radius: 15px;
       height: 100%;
-      object-fit: contain;
 	 }
     
 
@@ -56,31 +52,53 @@ display: flex;
         height: 80vh;
       }
     }
+	
+	.indicator {
+  
+ position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 3vh;
+  background: #feb602;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 99;
+}
+
+/* Classe per mostrare con fade-in */
+.indicator.show {
+  opacity: 1;
+}
+
   </style>
 </head>
 
 <body>
+	
   <div class="flipbook">
     <!-- Le tue pagine -->
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-01.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-02.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-03.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-04.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-05.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-06.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-07.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-08.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-09.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-10.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-11.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-12.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-13.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-14.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-15.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-16.jpg" /></div>
-    <div class="page"><img src="pages/f8a5a897-9f13-4037-a6af-205f91cf0989-17.jpg" /></div>
+    <div class="page"><img src="img/1.png" />
+	<div class="indicator"></div> 
+	</div>
+    <div class="page"><img src="img/2.png" /></div>
+    <div class="page"><img src="img/3.png" /></div>
+    <div class="page"><img src="img/4.png" /></div>
+    <div class="page"><img src="img/5.png" /></div>
+    <div class="page"><img src="img/6.png" /></div>
+    <div class="page"><img src="img/7.png" /></div>
+    <div class="page"><img src="img/8.png" /></div>
+    <div class="page"><img src="img/9.png" /></div>
+    <div class="page"><img src="img/10.png" /></div>
+    <div class="page"><img src="img/11.png" /></div>
+    <div class="page"><img src="img/12.png" /></div>
+    <div class="page"><img src="img/13.png" /></div>
+    <div class="page"><img src="img/14.png" /></div>
+    <div class="page"><img src="img/15.png" /></div>
+    <div class="page"><img src="img/16.png" /></div>
+    <div class="page"><img src="img/17.png" /></div>
   </div>
-  
+  <div class="indicator"></div>
   
 	<audio id="pageSound" src="page-flip.mp3" preload="auto"></audio>
 
@@ -107,8 +125,33 @@ display: flex;
       $(window).resize(function () {
         $(".flipbook").turn("size", $(".flipbook").width(), $(".flipbook").height());
       });
+	  
+		function flashIndicator(times = 4, interval = 800) {
+	  const indicator = document.querySelector('.indicator');
+	  let count = 0;
+
+	  const flash = setInterval(() => {
+		// Alterna l'opacità
+		if (indicator.style.opacity === "1") {
+		  indicator.style.opacity = "0";
+		} else {
+		  indicator.style.opacity = "1";
+		}
+
+		count++;
+		if (count >= times * 2) {
+		  clearInterval(flash);
+		  indicator.style.opacity = "0"; // assicurati che sia nascosto alla fine
+		}
+	  }, interval);
+	}
+
+	// Avvia lampeggio al caricamento
+	flashIndicator();
+
 	
-		
+	
+
 		
     });
   </script>
