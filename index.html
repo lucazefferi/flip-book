@@ -109,8 +109,10 @@
 	const sound = document.getElementById("pageSound");
 
       $(".flipbook").turn({
+	  
         width: $(".flipbook").width(),
         height: $(".flipbook").height(),
+		display: window.innerWidth <= 768 ? 'single' : 'double',
         autoCenter: true,
         when: {
           turning: function () {
