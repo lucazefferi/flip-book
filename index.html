@@ -5,57 +5,65 @@
   <meta charset="UTF-8" />
   <title>Disturbi dell’umore: La depressione</title>
   <style>
-    body {
-	  background-image: url("bg.jpg");
-      margin: 0;
-	  display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 40px;
-      min-height: 100vh;
-      box-sizing: border-box;
-    }
-	
+   body {
+  background-image: url("bg.jpg");
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
 
+.flipbook {
+  display: inline-block;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1200px;
+  aspect-ratio: 3 / 2; /* mantiene proporzioni stabili */
+}
 
-    .flipbook {
-      width: 100vw;
-      max-width: 800px;
-      height: 95vh;
-      max-height: 600px;
-    }
+.flipbook .page {
+  width: 500px !important;
+  height: 100%;
+  position: relative;
+  border: 1px solid red;
+}
 
-    .flipbook .page {
-      height: 100%;
-    }
-	
-		
-		
-		
-    .flipbook .page img {
-      width: 100%;
-	  border-radius: 15px;
-      height: 100%;
-	 }
-    
+.flipbook .page img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  object-fit: contain; /* mostri tutta l'immagine senza tagliarla */
+  image-rendering: auto;
+  border-radius: 15px;
+}
 
-    @media (max-width: 768px) {
-      .flipbook {
-        width: 100vw;
-        height: 70vh;
-      }
-    }
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .flipbook {
+    width: 95vw;
+    aspect-ratio: 3 / 2;
+  }
+}
 
-    @media (max-width: 480px) {
-      .flipbook {
-        width: 100vw;
-        height: 80vh;
-      }
-    }
-	
-	.indicator {
-  
- position: absolute;
+@media (max-width: 480px) {
+  .flipbook {
+    width: 95vw;
+    aspect-ratio: 3 / 2;
+  }
+}
+
+/* Indicatore */
+.indicator {
+  position: absolute;
   top: 5px;
   right: 5px;
   padding: 25px;
@@ -66,7 +74,6 @@
   z-index: 99;
 }
 
-/* Classe per mostrare con fade-in */
 .indicator.show {
   opacity: 1;
 }
@@ -151,7 +158,6 @@
 	// Avvia lampeggio al caricamento
 	flashIndicator();
 
-	
 	
 
 		
